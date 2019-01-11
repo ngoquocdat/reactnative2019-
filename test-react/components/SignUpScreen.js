@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput,TouchableOpacity, KeyboardAvoidingView, Keyboard } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput,TouchableOpacity, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { createStackNavigator, createAppContainer } from "react-navigation";
+import Language from './Language'
 var styles = require('./Styles');
 export default class ContactScreen extends React.Component {
   constructor(props){
@@ -22,7 +23,8 @@ export default class ContactScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
-      <KeyboardAvoidingView style={{padding:20,}} behavior="padding">
+      <ScrollView>
+      <Language/>
       <View style={styles.form} >
         <View>
           <Text style={styles.title}>SignUp</Text>
@@ -34,7 +36,7 @@ export default class ContactScreen extends React.Component {
           value={this.state.email} 
           onChangeText={this.handleEmail} 
           placeholder="Email"
-          autoFocus={true}
+          autoFocus={false}
           />
         </View>
         <View>
@@ -42,7 +44,7 @@ export default class ContactScreen extends React.Component {
           style={styles.input}
           value={this.state.password} 
           onChangeText={this.handlePassword} 
-          autoFocus={true}
+          autoFocus={false}
           placeholder="Password"
           secureTextEntry
           />
@@ -58,7 +60,7 @@ export default class ContactScreen extends React.Component {
         </TouchableOpacity>
         </View>
       </View>
-      </KeyboardAvoidingView>
+      </ScrollView>
     );
   }
 }

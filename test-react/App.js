@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView,TouchableOpacity } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer, TabBarBottom,createStackNavigator } from "react-navigation";
 import { Ionicons } from '@expo/vector-icons';
 import Image from 'react-native-remote-svg'
-
+ 
 import ContactScreen from './components/ContactScreen';
 import CareersScreen from './components/CareersScreen'
 import SignUpScreen from './components/SignUpScreen'
@@ -41,11 +41,6 @@ class HomeScreen extends React.Component {
         <DatePicker/>
 
         <Button
-          title="QR Code Scanner"
-          onPress={() => this.props.navigation.navigate('QRCodeScanner')}
-        />
-
-        <Button
           title="Clipboard"
           onPress={() => this.props.navigation.navigate('ClipboardScreen')}
         />
@@ -54,7 +49,6 @@ class HomeScreen extends React.Component {
           title="ETHapi"
           onPress={() => this.props.navigation.navigate('ETHapi')}
         />
-
       </ScrollView>
     );
   }
@@ -62,8 +56,12 @@ class HomeScreen extends React.Component {
 
 const HomeStack = createStackNavigator(
   {
-    Home: HomeScreen,
-    QRCodeScanner: QRCodeScanner,
+    Home: {
+      screen:HomeScreen,
+      navigationOptions:{
+        header:null,
+      }
+    },
     ClipboardScreen: ClipboardScreen,
     ETHapi: ETHapi,
   },
@@ -71,18 +69,43 @@ const HomeStack = createStackNavigator(
 
 const AppNavigator = createMaterialTopTabNavigator(
   {
+    QRCode: QRCodeScanner,
+    Contact: ContactScreen,
     Home: {
       screen: HomeStack, 
       navigationOptions: {
           title:'',
+          header:null,
+
           tabBarIcon: ({ focused, tintcolor }) => (
-            <Image 
-            source={logo} 
-            style={{justifyContent:'center', marginTop:25,width:50, height:50}}/>
+            <View
+              style={{
+                backgroundColor:'#108738',
+                borderColor:'white',
+                borderWidth: 2,
+                borderRadius: '100%',
+                width:80,
+                height:80,
+                flex:1,
+                justifyContent:'center',
+                alignItems:'center',
+                position:'absolute',
+                // marginBottom:20,
+                // top:15,
+              }}
+            >
+              <Image 
+              source={logo} 
+              style={{
+                justifyContent:'center', 
+                width:50, 
+                height:50,
+                alignItems:'center',
+              }}/>
+            </View>
           )
         },
     },
-    Contact: ContactScreen,
     Careers: CareersScreen,
     SignUp: SignUpScreen,
   },
@@ -102,19 +125,37 @@ const AppNavigator = createMaterialTopTabNavigator(
     // }),
     tabBarPosition: 'bottom',
     tabBarOptions: {
-      activeTintColor: 'tomato',
+      activeTintColor: '#E8B214',
       inactiveTintColor: 'white',
-      //activeBackgroundColor: 'red',
+      inactiveBackgroundColor: '#108738',
+      activeBackgroundColor: '#108738',
       showIcon: true,
       tabStyle:{
-        backgroundColor:'#1c5c7b',
-        position: 'fixed',
-        bottom: 20,
+        //backgroundColor:'#108738',
+        // position: 'fixed',
+        bottom: 25,
+        fontSize:10,
+        height:'auto',
+      },
+      labelStyle: {        
+       fontSize: 10,
+       justifyContent:'center',
+       textAlign:'center',
+       fontWeight:'700',
+       whiteSpace:'nowrap',
+       width:'auto',
+       height:45,
+       backgroundColor: '#108738',
       },
       style:{
-        height:60,
-        backgroundColor:'#1c5c7b',
+        height:45,
+        backgroundColor: '#108738',
       },
+      indicatorStyle: {
+        display:'none',
+      },
+      
+      upperCaseLabel: false,
     },
     animationEnabled: true,
     swipeEnabled: true,

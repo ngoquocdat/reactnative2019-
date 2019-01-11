@@ -1,12 +1,12 @@
 module.exports = {
    	mainpage: {
-       flex: 1,
-       backgroundColor: '#fff',
-       padding: 20,
+      flex: 1,
+      backgroundColor: 'transparent',
+      padding: 20,
   	},
   	mainpage_contact: {
        flex: 1,
-       backgroundColor: '#fff',
+       backgroundColor: 'transparent',
        paddingLeft: 20,
        paddingRight: 20,
        paddingTop: 20,
@@ -30,8 +30,9 @@ module.exports = {
   	form:{
   		padding:20,
   		width:'100%',
-  		position:'relative',
+  		position:'absolute',
   		justifyContent:'center',
+      top:40,
   	},
   	input:{
         marginBottom: 5,
@@ -41,7 +42,7 @@ module.exports = {
   		borderWidth:1,
   	},
   	buttonContainer:{
-        backgroundColor: '#00b5ad',
+        backgroundColor: '#108738',
         color:'white',
         paddingVertical: 10,
     },
